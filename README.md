@@ -54,7 +54,7 @@ Using the [VSCode Remote SSH](https://marketplace.visualstudio.com/items?itemNam
 ### Give it a spin!
 At this point you can attach the Pi Hat to the Pi and the LED Matrix and try the  demo in this repo to make sure that things are working:<br><br> 
 
-`./demo/blinkit.sh`
+`sudo ./demo/blinkit.sh`
 
 This should blink the LED Matrix in yellow with a 3 second cycle.
 
