@@ -61,7 +61,7 @@ This should blink the LED Matrix in yellow with a 3 second cycle.
 If all is well, have a look at the code for this project in the [app](./app) directory in this repo.
 
 ### Troubleshooting
-1. This app was built against commit `a3eea997a9254b83ab2de97ae80d83588f696387` of the LED Matrix Library. Try checking out that commit in the library repo and building installing it:<br><br>
+1. This app was built against commit `a3eea997a9254b83ab2de97ae80d83588f696387` of the LED Matrix Library. Try checking out that commit in the library repo and installing it:<br><br>
 ```bash
 git checkout a3eea997a9254b83ab2de97ae80d83588f696387
 sudo make clean
