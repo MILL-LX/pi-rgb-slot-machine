@@ -6,7 +6,7 @@ A Slot Machine running on a Raspberry Pi with an RGB LED Matrix Display
 
 ### [Electrodragon RGB LED Matrix Panel Drive Board For Raspberry Pi](https://www.electrodragon.com/product/rgb-matrix-panel-drive-board-raspberry-pi/)
 
-![](assets/RGB-Matrix-Panel-Drive-Board-For-Raspberry-Pi-04-1.jpg)
+![Electrodragon RGB LED Matrix Panel Drive Board For Raspberry Pi](assets/RGB-Matrix-Panel-Drive-Board-For-Raspberry-Pi-04-1.jpg)
 
 ## Set up the Pi
 
