@@ -15,8 +15,8 @@ class Matrix:
         self.options.brightness = 25
         self.options.rows = 16
         self.options.cols = 32
-        self.options.chain_length = 4
-        self.options.parallel = 3
+        self.options.chain_length = 12
+        self.options.parallel = 1
         # self.options.chain_length = 1
         # self.options.parallel = 1
         self.options.multiplexing = 4
