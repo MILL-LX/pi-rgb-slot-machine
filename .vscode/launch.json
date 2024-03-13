@@ -9,7 +9,10 @@
             "type": "debugpy",
             "request": "launch",
             "program": "app/src/app.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "debugOptions": [
+                "Sudo"
+            ]
         }
     ]
 }
