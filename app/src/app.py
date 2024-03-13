@@ -6,8 +6,8 @@ from util import test_image_for_display
 
 def main():
     display = Display()
-    test_image = test_image_for_display(display, 2)
-    display.setImage(test_image)
+    test_image = test_image_for_display(display, num_panels=2)
+    display.setImage(test_image, x_offset=0, y_offset=0)
 
     while True:
         try:

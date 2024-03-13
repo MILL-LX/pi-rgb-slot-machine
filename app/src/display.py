@@ -34,13 +34,13 @@ class Display:
     def height(self):
         return self.matrix.height
 
-    def setImage(self, image: Image.Image):
+    def setImage(self, image: Image.Image, x_offset=0, y_offset=0):
         self.matrix.Clear() 
-        self.matrix.SetImage(image.convert("RGB"))
+        self.matrix.SetImage(image.convert("RGB"), x_offset, y_offset, True)
 
-    def setScaledImage(self, image: Image.Image):
+    def setScaledImage(self, image: Image.Image, x_offset=0, y_offset=0):
         scaled_image = image.thumbnail((self.matrix.width,self.matrix.height))
-        self.setImage(scaled_image)  
+        self.setImage(scaled_image, x_offset=x_offset, y_offset=y_offset)  
 
     def clear(self):
         self.matrix.Clear()
