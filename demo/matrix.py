@@ -86,9 +86,9 @@ class Matrix:
         image.thumbnail((self.matrix.width,self.matrix.height))
         self.matrix.SetImage(image.convert("RGB"))
 
-    def testImage(self):
+    def testImage(self, brightness: int):
         self.matrix.Clear()
-        self.matrix.brightness = 100
+        self.matrix.brightness = brightness
         test_image = Image.open("pikachu.jpg")
         print(test_image.size)
         #print(self.matrix.height)

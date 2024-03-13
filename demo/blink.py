@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 # myMatrix.fill(color_rgb)
                 # myMatrix.lightBorder(color_rgb)
                 # myMatrix.lightZone(color_rgb, zone)
-                myMatrix.testImage()
+                myMatrix.testImage(bright)
                 print("on")
                 time.sleep(delay)
                 myMatrix.clear()
