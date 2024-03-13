@@ -38,12 +38,17 @@ if __name__ == "__main__":
             delay = int(delay)
         try:
             myMatrix.setBrightness(bright)
+            zone = 0
             while True:
-                myMatrix.fill(color_rgb)
+                # myMatrix.fill(color_rgb)
+                # myMatrix.lightBorder(color_rgb)
+                # myMatrix.lightZone(color_rgb, zone)
+                myMatrix.testImage()
                 print("on")
                 time.sleep(delay)
                 myMatrix.clear()
                 print("off")
-                time.sleep(delay)
+                time.sleep(1)
+                zone = (zone + 1) % 3
         except KeyboardInterrupt:
             sys.exit(0)

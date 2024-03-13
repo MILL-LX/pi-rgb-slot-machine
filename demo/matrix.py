@@ -15,8 +15,8 @@ class Matrix:
         self.options.brightness = 25
         self.options.rows = 16
         self.options.cols = 32
-        self.options.chain_length = 12
-        self.options.parallel = 1
+        self.options.chain_length = 2
+        self.options.parallel = 3
         # self.options.chain_length = 1
         # self.options.parallel = 1
         self.options.multiplexing = 4
@@ -45,12 +45,12 @@ class Matrix:
 
     def lightBorder(self, rgb: tuple[int, int, int]) -> None:
         self.matrix.Clear()
-        print(self.matrix.height, self.matrix.width)
+        print(f'Matrix width: {self.matrix.width} height: {self.matrix.width}')
         self.image = Image.new("RGB", (self.matrix.width,self.matrix.height))
         self.draw = ImageDraw.Draw(self.image)
-        self.draw.rectangle((0,0,int(self.matrix.width)-1,int(self.matrix.height)-1), outline=(rgb[0],rgb[1],rgb[2]), width=3)
+        self.draw.rectangle((0,0,int(self.matrix.width)-1,int(self.matrix.height)-1), outline=(rgb[0],rgb[1],rgb[2]), width=1)
         self.matrix.SetImage(self.image)
-        self.image.save("image_teste", "png")
+        self.image.save("image_teste.png", "png")
         self.image.close()
 
         self.border_status = True
@@ -89,7 +89,7 @@ class Matrix:
     def testImage(self):
         self.matrix.Clear()
         self.matrix.brightness = 100
-        test_image = Image.open("../media/betano.jpg")
+        test_image = Image.open("pikachu.jpg")
         print(test_image.size)
         #print(self.matrix.height)
         test_image.thumbnail((self.matrix.width,self.matrix.height), resample=Image.ANTIALIAS)

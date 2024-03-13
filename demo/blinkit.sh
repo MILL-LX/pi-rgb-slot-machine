@@ -1,4 +1,4 @@
 #!/bin/sh
 
 
-python $(dirname "$0")/blink.py white 30 30
+python $(dirname "$0")/blink.py white 30 3
