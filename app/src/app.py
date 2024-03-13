@@ -6,7 +6,7 @@ from util import test_image_for_display
 
 def main():
     display = Display()
-    test_image = test_image_for_display(display)
+    test_image = test_image_for_display(display, 2)
     display.setImage(test_image)
 
     while True:
