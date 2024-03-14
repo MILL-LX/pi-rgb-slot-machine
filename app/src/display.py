@@ -12,7 +12,7 @@ class Display:
         self.currentColor = (0,0,0)
 
         self.options = RGBMatrixOptions()
-        self.options.brightness = 80
+        self.options.brightness = 100
         self.options.rows = 16
         self.options.cols = 32
         self.options.chain_length = 4
