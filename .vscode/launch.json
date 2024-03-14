@@ -5,12 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "App",
+            "name": "App - Slot Machine",
             "type": "debugpy",
             "request": "launch",
             "program": "app/src/app.py",
             "console": "integratedTerminal",
+            "args": "--slot-machine",
             "sudo": true
-        }
+        },
+        {
+            "name": "App - Test Display",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "app/src/app.py",
+            "console": "integratedTerminal",
+            "args": "--test-display",
+            "sudo": true
+        },
     ]
 }
