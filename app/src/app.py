@@ -12,7 +12,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Raspbetty Pi LED Matrix Slot Machine")
     parser.add_argument("--test-display", action="store_true", help="Test the display panel")
     parser.add_argument("--slot-machine", action="store_true", help="Run the slot machine")
-    parser.add_argument("--num-panels", type=int, default=2, help="number of display panels")
+    parser.add_argument("--num-panels", type=int, default=4, help="number of display panels")
     return parser.parse_args()
 
 def run_display_test(display):
@@ -23,8 +23,11 @@ def run_display_test(display):
             display_image = util.display_image_from_panel_images(panel_images)
             display.setImage(display_image, x_offset=0, y_offset=0)
 
+            # display_image.save("image_teste.png", "png")
+            # display_image.close()
+
             panel_images = panel_images[::-1]
-            time.sleep(0.2)
+            time.sleep(1)
         except KeyboardInterrupt:
             sys.exit(0)
 
@@ -41,9 +44,7 @@ def run_slot_machine(display):
         else:
             return 'SlotMachine is busy'
         
-
     app.run(host='0.0.0.0', port=80)
-
 
 def main():
     args = parse_arguments()

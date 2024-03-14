@@ -11,29 +11,15 @@ def test_image_for_panel(display: Display, fill_color: tuple[int, int, int]):
 
     image = Image.new("RGB", (panel_width, panel_height))
     draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, panel_width * panel_width, panel_height), fill=fill_color)
+    draw.rectangle((0, 0, panel_width, panel_height), fill=fill_color)
 
     return image 
 
 def test_images_for_display(display: Display):
     colors = [(255,0,0), (0,255,0),(0,0,255),(255,255,255)] # TODO - dynamically generate base on num_panels
+    # colors = [(255,0,0), (255,0,0), (255,0,0), (255,0,0)] # TODO - dynamically generate base on num_panels
     panel_images = [test_image_for_panel(display, colors[panel_number]) for panel_number in range(display.num_panels)]
     return panel_images
-
-def test_image_for_display(display: Display):
-    image = Image.new("RGB", (display.width(), display.height()))
-    draw = ImageDraw.Draw(image)
-    
-    panel_width = display.width() // display.num_panels
-    panel_height = display.height()
-    x = 0
-    y = 0
-
-    colors = [(255,0,0), (0,255,0),(0,0,255),(255,255,255)]
-    for panel in range(display.num_panels):
-        x = panel_width * panel
-        draw.rectangle((x, y, panel_width * panel_width, panel_height), fill=colors[panel])
-    return image    
 
 ##############################################################################################
 # Image Utility Functions

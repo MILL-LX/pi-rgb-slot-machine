@@ -2,6 +2,7 @@ from enum import Enum
 import time
 
 from display import Display
+import util
 
 State = Enum('State', ['IDLE', 'RUNNING'])
 
@@ -16,3 +17,4 @@ class SlotMachine:
         time.sleep(10)
         print(f'cycle done')
         self.state = State.IDLE
+
