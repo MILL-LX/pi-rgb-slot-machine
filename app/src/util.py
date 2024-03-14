@@ -2,23 +2,9 @@ from PIL import Image, ImageDraw
 
 from display import Display
 
-def display_image_from_panel_images(panel_images):
-    num_panels = len(panel_images)
-
-    if num_panels == 0:
-        raise ValueError("panel_images is empty")
-
-    panel_width, panel_height = panel_images[0].size
-
-    display_image = Image.new("RGB", (num_panels * panel_width, panel_height))
-
-    current_x = 0
-    for panel_image in panel_images:
-        display_image.paste(panel_image, (current_x, 0))
-        current_x += panel_width
-
-    return display_image
-
+##############################################################################################
+# Testing Functions
+##############################################################################################
 def test_image_for_panel(display: Display, num_panels: int, fill_color: tuple[int, int, int]):
     panel_width = display.width() // num_panels
     panel_height = display.height()
@@ -48,3 +34,24 @@ def test_image_for_display(display: Display, num_panels: int):
         x = panel_width * panel
         draw.rectangle((x, y, panel_width * panel_width, panel_height), fill=colors[panel])
     return image    
+
+##############################################################################################
+# Image Utility Functions
+##############################################################################################
+def display_image_from_panel_images(panel_images):
+    num_panels = len(panel_images)
+
+    if num_panels == 0:
+        raise ValueError("panel_images is empty")
+
+    panel_width, panel_height = panel_images[0].size
+
+    display_image = Image.new("RGB", (num_panels * panel_width, panel_height))
+
+    current_x = 0
+    for panel_image in panel_images:
+        display_image.paste(panel_image, (current_x, 0))
+        current_x += panel_width
+
+    return display_image
+
