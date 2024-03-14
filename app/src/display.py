@@ -28,6 +28,7 @@ class Display:
         # self.options.pwm_lsb_nanoseconds = 130
         self.options.limit_refresh_rate_hz = 250
         self.matrix = RGBMatrix(options = self.options)
+        self.matrix.Clear()
 
     def width(self):
         return self.matrix.width
