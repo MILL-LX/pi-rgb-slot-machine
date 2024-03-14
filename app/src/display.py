@@ -2,7 +2,8 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image
 
 class Display:
-    def __init__(self) -> None:
+    def __init__(self, num_panels: int) -> None:
+        self.num_panels = num_panels
         self.brightness = 25
         self.fill_status = False
         self.zone_status = False

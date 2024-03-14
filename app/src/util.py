@@ -5,8 +5,8 @@ from display import Display
 ##############################################################################################
 # Testing Functions
 ##############################################################################################
-def test_image_for_panel(display: Display, num_panels: int, fill_color: tuple[int, int, int]):
-    panel_width = display.width() // num_panels
+def test_image_for_panel(display: Display, fill_color: tuple[int, int, int]):
+    panel_width = display.width() // display.num_panels
     panel_height = display.height()
 
     image = Image.new("RGB", (panel_width, panel_height))
@@ -15,22 +15,22 @@ def test_image_for_panel(display: Display, num_panels: int, fill_color: tuple[in
 
     return image 
 
-def test_images_for_display(display: Display, num_panels: int):
+def test_images_for_display(display: Display):
     colors = [(255,0,0), (0,255,0),(0,0,255),(255,255,255)] # TODO - dynamically generate base on num_panels
-    panel_images = [test_image_for_panel(display, num_panels, colors[panel_number]) for panel_number in range(num_panels)]
+    panel_images = [test_image_for_panel(display, colors[panel_number]) for panel_number in range(display.num_panels)]
     return panel_images
 
-def test_image_for_display(display: Display, num_panels: int):
+def test_image_for_display(display: Display):
     image = Image.new("RGB", (display.width(), display.height()))
     draw = ImageDraw.Draw(image)
     
-    panel_width = display.width() // num_panels
+    panel_width = display.width() // display.num_panels
     panel_height = display.height()
     x = 0
     y = 0
 
     colors = [(255,0,0), (0,255,0),(0,0,255),(255,255,255)]
-    for panel in range(num_panels):
+    for panel in range(display.num_panels):
         x = panel_width * panel
         draw.rectangle((x, y, panel_width * panel_width, panel_height), fill=colors[panel])
     return image    

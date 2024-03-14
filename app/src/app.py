@@ -2,6 +2,8 @@ import argparse
 import sys
 import time
 
+from flask import Flask
+
 from display import Display
 from slot_machine import SlotMachine
 import util
@@ -13,8 +15,8 @@ def parse_arguments():
     parser.add_argument("--num-panels", type=int, default=2, help="number of display panels")
     return parser.parse_args()
 
-def run_display_test(display, num_panels):
-    panel_images = util.test_images_for_display(display, num_panels=num_panels) # TODO - replace with a call to generate panels for each animation frame      
+def run_display_test(display):
+    panel_images = util.test_images_for_display(display) # TODO - replace with a call to generate panels for each animation frame      
 
     while True:
         try:
@@ -26,22 +28,28 @@ def run_display_test(display, num_panels):
         except KeyboardInterrupt:
             sys.exit(0)
 
-def run_slot_machine(display, num_panels):
-    machine = SlotMachine(display, num_panels=num_panels)
-    pass
+def run_slot_machine(display):
+    machine = SlotMachine(display)
+
+    app = Flask(__name__)
+    @app.route('/kick', methods=['GET'])
+    def kick():
+        return 'Kicked!'
+
+    app.run(host='0.0.0.0', port=80)
+
 
 def main():
     args = parse_arguments()
 
-    display = Display()
+    display = Display(args.num_panels)
 
     if args.test_display: 
-        run_display_test(display, num_panels=args.num_panels)
+        run_display_test(display)
     elif args.slot_machine:
-        run_slot_machine(display, num_panels=args.num_panels)
+        run_slot_machine(display)
     else:
         print(f'KTHXBye')
-
 
 if __name__ == "__main__":
     main()
