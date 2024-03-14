@@ -12,6 +12,14 @@
             "console": "integratedTerminal",
             "args": "--slot-machine",
             "sudo": true
+        },        {
+            "name": "[local] App - Slot Machine",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "app/src/app.py",
+            "console": "integratedTerminal",
+            "args": "--slot-machine",
+            "sudo": false
         },
         {
             "name": "App - Test Display",
@@ -21,6 +29,15 @@
             "console": "integratedTerminal",
             "args": "--test-display",
             "sudo": true
+        },
+        {
+            "name": "[local] App - Test Display",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "app/src/app.py",
+            "console": "integratedTerminal",
+            "args": "--test-display",
+            "sudo": false
         },
     ]
 }

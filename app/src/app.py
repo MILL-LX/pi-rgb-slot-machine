@@ -28,7 +28,7 @@ def run_display_test(display):
 
             # Rotate the array of panel images
             panel_images = panel_images[-1:] + panel_images[:-1]
-            time.sleep(3)
+            time.sleep(0.1)
         except KeyboardInterrupt:
             sys.exit(0)
 
