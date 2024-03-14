@@ -1,9 +1,22 @@
-# from rgbmatrix import RGBMatrix, RGBMatrixOptions
-from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions
+def is_raspberry_pi():
+    try:
+        with open('/sys/firmware/devicetree/base/model', 'r') as f:
+            model = f.read()
+            if 'Raspberry Pi' in model:
+                return True
+    except FileNotFoundError:
+        pass
+    return False
+
+if is_raspberry_pi():
+    from rgbmatrix import RGBMatrix, RGBMatrixOptions
+else:
+    from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions
+    
 from PIL import Image
 
 class Display:
-    def __init__(self, num_panels: int) -> None:
+    def __init__(self, num_panels: int, emulate=False) -> None:
         self.num_panels = num_panels
         self.brightness = 25
         self.fill_status = False

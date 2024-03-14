@@ -4,15 +4,15 @@
     "pixel_style": "square",
     "display_adapter": "browser",
     "suppress_font_warnings": false,
-    "suppress_adapter_load_errors": false,
+    "suppress_adapter_load_errors": true,
     "browser": {
         "_comment": "For use with the browser adapter only.",
         "port": 8888,
-        "target_fps": 24,
-        "fps_display": false,
-        "quality": 70,
+        "target_fps": 120,
+        "fps_display": true,
+        "quality": 100,
         "image_border": true,
-        "debug_text": false,
+        "debug_text": true,
         "image_format": "JPEG"
     },
     "log_level": "info"
