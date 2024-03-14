@@ -34,6 +34,7 @@ def run_slot_machine(display):
     app = Flask(__name__)
     @app.route('/kick', methods=['GET'])
     def kick():
+        # TODO - consider async implementation
         if machine.state == State.IDLE:
             machine.kick()
             return 'SlotMachine was kicked successfully'
