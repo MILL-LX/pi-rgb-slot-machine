@@ -5,7 +5,7 @@ import time
 from flask import Flask
 
 from display import Display
-from slot_machine import SlotMachine
+from slot_machine import SlotMachine, State
 import util
 
 def parse_arguments():
@@ -34,7 +34,12 @@ def run_slot_machine(display):
     app = Flask(__name__)
     @app.route('/kick', methods=['GET'])
     def kick():
-        return 'Kicked!'
+        if machine.state == State.IDLE:
+            machine.kick()
+            return 'SlotMachine was kicked successfully'
+        else:
+            return 'SlotMachine is busy'
+        
 
     app.run(host='0.0.0.0', port=80)
 
