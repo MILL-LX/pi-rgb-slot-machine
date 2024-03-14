@@ -26,8 +26,9 @@ def run_display_test(display):
             # display_image.save("image_teste.png", "png")
             # display_image.close()
 
-            panel_images = panel_images[::-1]
-            time.sleep(1)
+            # Rotate the array of panel images
+            panel_images = panel_images[-1:] + panel_images[:-1]
+            time.sleep(3)
         except KeyboardInterrupt:
             sys.exit(0)
 
