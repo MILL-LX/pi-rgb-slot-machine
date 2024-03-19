@@ -102,7 +102,7 @@ class SlotMachine:
             time.sleep(0.1)
         self.display.setImage(final_display_image, x_offset=0, y_offset=0)
 
-        # TODO - test by always adding the current word to the winning word list
+        # DEBUG - test by always adding the current word to the winning word list
         # self.winning_words.append(final_word)
 
         flash_delay = 0.08
