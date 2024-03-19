@@ -88,16 +88,46 @@ class SlotMachine:
 
         self.display.clear()
 
-        final_display_image = random.choice(self.display_images_for_words)
+        final_word_index = random.randint(0, len(self.words) - 1)
+        final_word = self.words[final_word_index]
+        final_display_image = self.display_images_for_words[final_word_index]
+
         display_images = self.display_images_for_words[:]
         display_images.extend(self.display_images_for_emoji)
         random.shuffle(display_images)
 
-        for display_image in display_images[:len(self.display_images_for_words)]:
+        iterations = min(100, len(self.display_images_for_words))
+        for display_image in display_images[:iterations]:
             self.display.setImage(display_image, x_offset=0, y_offset=0)
             time.sleep(0.1)
+        self.display.setImage(final_display_image, x_offset=0, y_offset=0)
+
+        # TODO - test by always adding the current word to the winning word list
+        # self.winning_words.append(final_word)
+
+        flash_delay = 0.08
+        if final_word in self.winning_words:
+            for i in range(5):
+                time.sleep(flash_delay)
+                self.display.matrix.Fill(255,0,0)
+                time.sleep(flash_delay)
+                self.display.setImage(final_display_image, x_offset=0, y_offset=0)
+                time.sleep(flash_delay)
+                self.display.matrix.Fill(0,255,0)
+                time.sleep(flash_delay)
+                self.display.setImage(final_display_image, x_offset=0, y_offset=0)
+                time.sleep(flash_delay)
+                self.display.matrix.Fill(0,0,255)
+                time.sleep(flash_delay)
+                self.display.setImage(final_display_image, x_offset=0, y_offset=0)
+                time.sleep(flash_delay)
+                self.display.matrix.Fill(255,255,255)
+                time.sleep(flash_delay)
 
         self.display.setImage(final_display_image, x_offset=0, y_offset=0)
+                
+
+
 
         print(f'cycle done')
         self.state = State.IDLE
