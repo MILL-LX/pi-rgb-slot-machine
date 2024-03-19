@@ -21,10 +21,6 @@ def run_display_test(display, seconds:int=0, check_network:bool=False):
     start_time = time.time()
     while True:
         try:
-            elapsed = time.time() - start_time
-            if elapsed > seconds and seconds > 0:
-                return
-            
             display_image = util.display_image_from_panel_images(panel_images)
             display.setImage(display_image, x_offset=0, y_offset=0)
 
@@ -35,8 +31,15 @@ def run_display_test(display, seconds:int=0, check_network:bool=False):
             panel_images = panel_images[-1:] + panel_images[:-1]
             time.sleep(0.1)
 
+
+            # We stop if we are checking for a network connection and we have one.
+            # Otherwise, we respect the time limit and stop if the specified seconds have elapsed.
             if check_network and util.has_active_network_interface():
                 return
+            elif seconds > 0:
+                elapsed = time.time() - start_time
+                if elapsed > seconds:
+                    return
             
         except KeyboardInterrupt:
             sys.exit(0)
