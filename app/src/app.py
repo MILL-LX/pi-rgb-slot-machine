@@ -15,7 +15,7 @@ def parse_arguments():
     parser.add_argument("--num-panels", type=int, default=4, help="number of display panels")
     return parser.parse_args()
 
-def run_display_test(display, seconds=0):
+def run_display_test(display, seconds:int=0, check_network:bool=False):
     panel_images = util.test_images_for_display(display) # TODO - replace with a call to generate panels for each animation frame      
 
     start_time = time.time()
@@ -34,6 +34,10 @@ def run_display_test(display, seconds=0):
             # Rotate the array of panel images
             panel_images = panel_images[-1:] + panel_images[:-1]
             time.sleep(0.1)
+
+            if check_network and util.has_active_network_interface():
+                return
+            
         except KeyboardInterrupt:
             sys.exit(0)
 
@@ -60,7 +64,7 @@ def main():
     if args.test_display: 
         run_display_test(display)
     elif args.slot_machine:
-        run_display_test(display, seconds=10)
+        run_display_test(display, seconds=10, check_network=True)
         run_slot_machine(display)
     else:
         print(f'KTHXBye')

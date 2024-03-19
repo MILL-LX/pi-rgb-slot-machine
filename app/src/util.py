@@ -1,6 +1,22 @@
+import subprocess
+
 from PIL import Image, ImageDraw
 
 from display import Display
+
+##############################################################################################
+# Startup Functions
+##############################################################################################
+def has_active_network_interface():
+    try:
+        # Run 'ip' command to list network interfaces
+        result = subprocess.run(['ip', 'link', 'show'], capture_output=True, text=True)
+
+        # Check if the command succeeded and if there's any network interface listed
+        return result.returncode == 0 and len(result.stdout.strip()) > 0
+    except Exception as e:
+        print("Error occurred while checking for active network interface:", e)
+        return False
 
 ##############################################################################################
 # Testing Functions
