@@ -54,15 +54,20 @@ class SlotMachine:
 
         # panel_images = util.test_images_for_display(self.display) 
         current_word = random.choice(self.words)
-        panel_images = [self.panel_image(c) for c in current_word]
+        words_minus_current_word = [word for word in self.words if word  != current_word]
+        final_panel_images = [self.panel_image(c) for c in current_word]
 
         for i in range(101):
+            current_word = random.choice(words_minus_current_word)
+            panel_images = [self.panel_image(c) for c in current_word]
             display_image = util.display_image_from_panel_images(panel_images)
             self.display.setImage(display_image, x_offset=0, y_offset=0)
 
             # Rotate the array of panel images
-            panel_images = panel_images[-1:] + panel_images[:-1]
-            time.sleep(0.05)
+            # panel_images = panel_images[-1:] + panel_images[:-1]
+            time.sleep(0.03)
+
+        display_image = util.display_image_from_panel_images(final_panel_images)
 
         print(f'cycle done')
         self.state = State.IDLE
