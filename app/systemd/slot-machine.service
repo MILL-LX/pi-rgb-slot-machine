@@ -1,0 +1,12 @@
+[Unit]
+Description=Raspberry Pi LED Matrix Slot Machine
+
+[Service]
+User=root
+WorkingDirectory=/home/rpi/repos/pi-rgb-slot-machine
+ExecStart=/bin/bash -c 'cd /home/rpi/repos/pi-rgb-slot-machine && python app/src/app.py --slot-machine'
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
