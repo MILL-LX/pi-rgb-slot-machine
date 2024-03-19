@@ -25,8 +25,10 @@ class SlotMachine:
         font_size = min(self.panel_width * 0.8, self.panel_height)
         self.emoji_font = ImageFont.truetype(font_path, size=font_size)
 
-        self.words = util.load_words()
+        self.words = util.load_words('./data/happy_words.txt')
         self.display_images_for_words = self.make_display_images_for_words()
+
+        self.winning_words = util.load_words('data/winning_words.txt')
 
         self.display_images_for_emoji = self.make_display_images_for_emoji()
         

@@ -60,7 +60,7 @@ def display_image_from_panel_images(panel_images):
 ##############################################################################################
 # Word List Utility Functions
 ##############################################################################################
-def load_words(word_file_path='./data/happy_words.txt'):
+def load_words(word_file_path):
     with open(word_file_path, 'r') as word_file:
         words = word_file.readlines()
     word_list = [word.rstrip('\n').upper() for word in words if len(word) == 5]
