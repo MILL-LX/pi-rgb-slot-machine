@@ -1,4 +1,5 @@
 from enum import Enum
+import random
 import time
 
 from PIL import Image, ImageDraw, ImageFont
@@ -6,12 +7,20 @@ from PIL import Image, ImageDraw, ImageFont
 from display import Display
 import util
 
+def load_words(word_file_path='./data/happy_words.txt'):
+    with open(word_file_path, 'r') as word_file:
+        words = word_file.readlines()
+    word_list = [word.rstrip('\n').upper() for word in words if len(word) == 5]
+    return word_list
+
+
 State = Enum('State', ['IDLE', 'RUNNING'])
 
 class SlotMachine:
     def __init__(self, display: Display) -> None:
         print(f'Making a SlotMachine for a display with {display.num_panels} panels.')
         self.display = display
+        self.words = load_words()
         self.state = State.IDLE
 
     def panel_image(self, character: str):
@@ -44,7 +53,8 @@ class SlotMachine:
         self.display.clear()
 
         # panel_images = util.test_images_for_display(self.display) 
-        panel_images = [self.panel_image(c) for c in "WORD"]
+        current_word = random.choice(self.words)
+        panel_images = [self.panel_image(c) for c in current_word]
 
         for i in range(101):
             display_image = util.display_image_from_panel_images(panel_images)
