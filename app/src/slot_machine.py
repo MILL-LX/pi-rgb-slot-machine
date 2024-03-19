@@ -5,7 +5,10 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 
 from display import Display
+from emoji import emoji_list
 import util
+
+
 
 def load_words(word_file_path='./data/happy_words.txt'):
     with open(word_file_path, 'r') as word_file:
@@ -23,7 +26,7 @@ class SlotMachine:
         self.words = load_words()
         self.state = State.IDLE
 
-    def panel_image(self, character: str):
+    def panel_image(self, character: str, font_path:str):
         display = self.display
         
         panel_width = display.width() // display.num_panels
@@ -33,7 +36,6 @@ class SlotMachine:
         draw = ImageDraw.Draw(image)
 
         font_size = min(panel_width, panel_height)
-        font_path = 'fonts/Canada Type - Screener SC.ttf'
         font = ImageFont.truetype(font_path, size=font_size)
     
         text_width = draw.textlength(character, font=font)
@@ -59,7 +61,8 @@ class SlotMachine:
         random.shuffle(words)
 
         for word in words:
-            panel_images = [self.panel_image(c) for c in word]
+            font_path = 'fonts/MILL/Canada Type - Screener SC.ttf'
+            panel_images = [self.panel_image(c, font_path) for c in word]
             display_image = util.display_image_from_panel_images(panel_images)
             self.display.setImage(display_image, x_offset=0, y_offset=0)
             time.sleep(0.04)
