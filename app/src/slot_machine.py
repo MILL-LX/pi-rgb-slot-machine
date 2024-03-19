@@ -110,28 +110,15 @@ class SlotMachine:
 
         flash_delay = 0.08
         if final_word in self.winning_words:
-            for i in range(5):
-                time.sleep(flash_delay)
-                self.display.matrix.Fill(255,0,0)
-                time.sleep(flash_delay)
-                self.display.setImage(final_display_image, x_offset=0, y_offset=0)
-                time.sleep(flash_delay)
-                self.display.matrix.Fill(0,255,0)
+            time.sleep(flash_delay)
+            for flash_color in [(255,0,0),(0,255,0),(0,0,255),(255,255,255)] * 5:
+                self.display.matrix.Fill(*flash_color)
                 time.sleep(flash_delay)
                 self.display.setImage(final_display_image, x_offset=0, y_offset=0)
-                time.sleep(flash_delay)
-                self.display.matrix.Fill(0,0,255)
-                time.sleep(flash_delay)
-                self.display.setImage(final_display_image, x_offset=0, y_offset=0)
-                time.sleep(flash_delay)
-                self.display.matrix.Fill(255,255,255)
                 time.sleep(flash_delay)
 
         self.display.setImage(final_display_image, x_offset=0, y_offset=0)
                 
-
-
-
         print(f'cycle done')
         self.state = State.IDLE
 
