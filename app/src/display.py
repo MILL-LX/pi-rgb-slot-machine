@@ -1,14 +1,6 @@
-def is_raspberry_pi():
-    try:
-        with open('/sys/firmware/devicetree/base/model', 'r') as f:
-            model = f.read()
-            if 'Raspberry Pi' in model:
-                return True
-    except FileNotFoundError:
-        pass
-    return False
+import util
 
-if is_raspberry_pi():
+if util.is_raspberry_pi():
     from rgbmatrix import RGBMatrix, RGBMatrixOptions
 else:
     from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions

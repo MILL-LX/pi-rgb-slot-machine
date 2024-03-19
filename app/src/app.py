@@ -6,6 +6,7 @@ from flask import Flask
 
 from display import Display
 from slot_machine import SlotMachine, State
+import image_util
 import util
 
 def parse_arguments():
@@ -16,12 +17,12 @@ def parse_arguments():
     return parser.parse_args()
 
 def run_display_test(display, seconds:int=0, check_network:bool=False):
-    panel_images = util.test_images_for_display(display) # TODO - replace with a call to generate panels for each animation frame      
+    panel_images = image_util.test_images_for_display(display) # TODO - replace with a call to generate panels for each animation frame      
 
     start_time = time.time()
     while True:
         try:
-            display_image = util.display_image_from_panel_images(panel_images)
+            display_image = image_util.display_image_from_panel_images(panel_images)
             display.setImage(display_image, x_offset=0, y_offset=0)
 
             # display_image.save("image_teste.png", "png")

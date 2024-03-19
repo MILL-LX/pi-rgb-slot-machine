@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from display import Display
 from emoji import emoji_list
+import image_util
 import util
 
 State = Enum('State', ['IDLE', 'RUNNING'])
@@ -30,7 +31,7 @@ class SlotMachine:
 
         self.winning_words = util.load_words('data/winning_words.txt')
 
-        self.display_images_for_emoji = self.make_display_images_for_emoji()
+        self.display_images_for_emoji, self.emoji_quartets = self.make_display_images_for_emoji()
         
         self.state = State.IDLE
 
@@ -56,13 +57,14 @@ class SlotMachine:
         words = self.words[:]
         random.shuffle(words)
 
-        display_images = []
+        display_images = {}
         for word in words:
             r = random.randint(0,255)
             g = random.randint(0,255)
             b = random.randint(0,255)
             panel_images = [self.panel_image(c, self.word_font, (r,g,b)) for c in word]
-            display_images.append(util.display_image_from_panel_images(panel_images))
+            if not display_images.get(word):
+                display_images[word] = image_util.display_image_from_panel_images(panel_images)
 
         return display_images
     
@@ -72,15 +74,16 @@ class SlotMachine:
         random.shuffle(shuffled_emoji)
         emoji_quartets = [''.join(shuffled_emoji[i:i+4]) for i in range(0, len(shuffled_emoji), self.display.num_panels)]
 
-        display_images = []
+        display_images = {}
         for quartet in emoji_quartets:
             r = random.randint(0,255)
             g = random.randint(0,255)
             b = random.randint(0,255)
             panel_images = [self.panel_image(c, self.emoji_font, (r,g,b)) for c in quartet]
-            display_images.append(util.display_image_from_panel_images(panel_images))
+            if not display_images.get(quartet):
+                display_images[quartet] = image_util.display_image_from_panel_images(panel_images)
 
-        return display_images
+        return display_images, emoji_quartets
 
     def kick(self):
         self.state = State.RUNNING
@@ -90,10 +93,10 @@ class SlotMachine:
 
         final_word_index = random.randint(0, len(self.words) - 1)
         final_word = self.words[final_word_index]
-        final_display_image = self.display_images_for_words[final_word_index]
+        final_display_image = self.display_images_for_words[final_word]
 
-        display_images = self.display_images_for_words[:]
-        display_images.extend(self.display_images_for_emoji)
+        display_images = list(self.display_images_for_words.values())
+        display_images.extend(self.display_images_for_emoji.values())
         random.shuffle(display_images)
 
         iterations = min(100, len(self.display_images_for_words))
