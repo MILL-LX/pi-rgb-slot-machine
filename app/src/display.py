@@ -23,8 +23,6 @@ class Display:
         self.options.cols = 32
         self.options.chain_length = 4
         self.options.parallel = 3
-        # self.options.chain_length = 1
-        # self.options.parallel = 1
         self.options.multiplexing = 4
         self.options.disable_hardware_pulsing = True #do not change!!!
         self.options.hardware_mapping = 'regular'
@@ -52,3 +50,6 @@ class Display:
 
     def clear(self):
         self.matrix.Clear()
+
+    def fill(self, color: tuple[int, int, int]):
+        self.matrix.Fill(*color)

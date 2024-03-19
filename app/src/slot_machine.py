@@ -112,7 +112,7 @@ class SlotMachine:
         if final_word in self.winning_words:
             time.sleep(flash_delay)
             for flash_color in [(255,0,0),(0,255,0),(0,0,255),(255,255,255)] * 5:
-                self.display.matrix.Fill(*flash_color)
+                self.display.fill(flash_color)
                 time.sleep(flash_delay)
                 self.display.setImage(final_display_image, x_offset=0, y_offset=0)
                 time.sleep(flash_delay)
