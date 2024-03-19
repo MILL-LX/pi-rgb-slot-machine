@@ -5,4 +5,5 @@ cd /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl stop slot-machine.service
 sudo systemctl start slot-machine.service
+sudo systemctl enable slot-machine.service
 ```
