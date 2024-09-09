@@ -39,7 +39,8 @@ sudo apt install \
     pkg-config \
     graphicsmagick \
     libwebp \ 
-    ffmpeg
+    ffmpeg \
+    libcups2-dev
 ```
 
 ### Turn off Pi Audio
